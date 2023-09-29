@@ -14,7 +14,8 @@ namespace client.Model
     {
         [DisplayName("LoginEmp")]
         [Required(ErrorMessage = "Требуется логин сотрудника")]
-        public string loginEmp { get; set;}
+        [Key]
+        public string loginEmp { get; set; }
 
         [DisplayName("FisrstName")]
         [Required(ErrorMessage = "Требуется имя сотрудника")]
@@ -31,5 +32,7 @@ namespace client.Model
         [DisplayName("PasswordEmp")]
         [Required(ErrorMessage = "Требуется пароль сотрудника")]
         public string passwordEmp { get; set; }
+
+        public List<EmployeeOrganizationMap> EmployeeOrganizationMaps { get; set; }
     }
 }

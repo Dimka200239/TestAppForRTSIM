@@ -26,6 +26,6 @@ namespace server.Model
         [Required(ErrorMessage = "Требуется пароль сотрудника")]
         public string passwordEmp { get; set; }
 
-        public List<EmployeeOrganizationMap> EmployeeOrganizationMaps { get; set; }
+        public List<EmployeeOrganizationMap>? EmployeeOrganizationMaps { get; set; }
     }
 }

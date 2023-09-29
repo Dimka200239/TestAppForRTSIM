@@ -17,9 +17,9 @@ namespace server.Model
         public int orgId { get; set; }
 
         [ForeignKey("loginEmp")]
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
 
         [ForeignKey("orgId")]
-        public Organization Organization { get; set; }
+        public Organization? Organization { get; set; }
     }
 }

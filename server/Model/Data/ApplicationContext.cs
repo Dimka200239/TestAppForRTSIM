@@ -11,7 +11,7 @@ namespace server.Model.Data
         public DbSet<Organization> Organizations { get; private set; }
         public DbSet<EmployeeOrganizationMap> EmployeeOrganizationMaps { get; private set; }
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
         {
             Database.EnsureCreated();
         }

@@ -189,7 +189,8 @@
                 x:Name="OrganizationTextBoxInputBox"
                 Height="25px"
                 IsEditable="false"
-                Text="{Binding AddNewOrganization}"
+                ItemsSource="{Binding Items}"
+                SelectedItem="{Binding SelectedItem}"
                 Grid.Row="6"
                 Grid.Column="1">
             </ComboBox>

@@ -197,18 +197,20 @@
                 Grid.Column="0"
                 Style="{StaticResource LoginAndPasswordTextBlockStyle}"/>
             <ComboBox
-                x:Name="OrganizationTextBoxInputBox"
+                x:Name="ByOrganizationTextBoxInputBox"
                 Height="25px"
                 IsEditable="false"
-                Text="{Binding FindOrganization}"
+                ItemsSource="{Binding Items}"
+                SelectedItem="{Binding SelectedItem}"
                 Grid.Row="0"
                 Grid.Column="1">
             </ComboBox>
             <ComboBox
-                x:Name="LoginTextBoxInputBox"
+                x:Name="ByLoginTextBoxInputBox"
                 Height="25px"
                 IsEditable="false"
-                Text="{Binding FindLogin}"
+                ItemsSource="{Binding ItemsEmployee}"
+                SelectedItem="{Binding SelectedItemEmployee}"
                 Grid.Row="1"
                 Grid.Column="1">
             </ComboBox>

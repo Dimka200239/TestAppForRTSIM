@@ -14,6 +14,6 @@ namespace server.Model
         [Required(ErrorMessage = "Требуется название организации")]
         public string nameOrg { get; set; }
 
-        public List<EmployeeOrganizationMap> EmployeeOrganizationMaps { get; set; }
+        public List<EmployeeOrganizationMap>? EmployeeOrganizationMaps { get; set; }
     }
 }

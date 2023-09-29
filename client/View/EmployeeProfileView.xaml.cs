@@ -1,4 +1,5 @@
-﻿using client.ViewModel;
+﻿using client.Model;
+using client.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,10 @@ namespace client.View
     /// </summary>
     public partial class EmployeeProfileView : Page
     {
-        public EmployeeProfileView(Frame MainFrame)
+        public EmployeeProfileView(Frame MainFrame, Employee employee, Organization organization)
         {
             InitializeComponent();
-            DataContext = new EmployeeProfileVM(MainFrame);
+            DataContext = new EmployeeProfileVM(MainFrame, employee, organization);
         }
     }
 }
