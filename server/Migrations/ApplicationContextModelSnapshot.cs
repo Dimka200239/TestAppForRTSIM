@@ -21,9 +21,29 @@ namespace server.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("server.Model.Comments", b =>
+                {
+                    b.Property<string>("commentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("loginUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("commentId");
+
+                    b.HasIndex("loginUser");
+
+                    b.ToTable("Commentss");
+                });
+
             modelBuilder.Entity("server.Model.Employee", b =>
                 {
                     b.Property<string>("loginEmp")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("abbreviation")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("fisrstName")
@@ -44,6 +64,8 @@ namespace server.Migrations
 
                     b.HasKey("loginEmp");
 
+                    b.HasIndex("abbreviation");
+
                     b.ToTable("Employees");
                 });
 
@@ -62,6 +84,20 @@ namespace server.Migrations
                     b.ToTable("EmployeeOrganizationMaps");
                 });
 
+            modelBuilder.Entity("server.Model.Gender", b =>
+                {
+                    b.Property<string>("abbreviation")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("meaning")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("abbreviation");
+
+                    b.ToTable("Genders");
+                });
+
             modelBuilder.Entity("server.Model.Organization", b =>
                 {
                     b.Property<int>("orgId")
@@ -77,6 +113,42 @@ namespace server.Migrations
                     b.HasKey("orgId");
 
                     b.ToTable("Organizations");
+                });
+
+            modelBuilder.Entity("server.Model.Users", b =>
+                {
+                    b.Property<string>("loginUser")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("passwordUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("loginUser");
+
+                    b.ToTable("Userss");
+                });
+
+            modelBuilder.Entity("server.Model.Comments", b =>
+                {
+                    b.HasOne("server.Model.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("loginUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("server.Model.Employee", b =>
+                {
+                    b.HasOne("server.Model.Gender", "Gender")
+                        .WithMany("Employees")
+                        .HasForeignKey("abbreviation")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Gender");
                 });
 
             modelBuilder.Entity("server.Model.EmployeeOrganizationMap", b =>
@@ -101,6 +173,11 @@ namespace server.Migrations
             modelBuilder.Entity("server.Model.Employee", b =>
                 {
                     b.Navigation("EmployeeOrganizationMaps");
+                });
+
+            modelBuilder.Entity("server.Model.Gender", b =>
+                {
+                    b.Navigation("Employees");
                 });
 
             modelBuilder.Entity("server.Model.Organization", b =>

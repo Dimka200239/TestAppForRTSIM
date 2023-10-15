@@ -8,12 +8,19 @@ namespace server.Controller
     [ApiController]
     public class OrganizationController : ControllerBase
     {
+        private readonly ApplicationContext _dbContext;
+
+        public OrganizationController(ApplicationContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         [HttpGet("getAllOrganizations")]
         public async Task<ActionResult<List<Model.Organization>>> Get()
         {
             List<Model.Organization> result = null;
 
-            await using (ApplicationContext db = new ApplicationContext(new DbContextOptions<ApplicationContext>()))
+            await using (ApplicationContext db = _dbContext)
             {
                 try
                 {
@@ -35,7 +42,7 @@ namespace server.Controller
         {
             Model.Organization result = null;
 
-            await using (ApplicationContext db = new ApplicationContext(new DbContextOptions<ApplicationContext>()))
+            await using (ApplicationContext db = _dbContext)
             {
                 try
                 {

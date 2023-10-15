@@ -10,15 +10,22 @@ namespace server.Model.Data
         public DbSet<Employee> Employees { get; private set; }
         public DbSet<Organization> Organizations { get; private set; }
         public DbSet<EmployeeOrganizationMap> EmployeeOrganizationMaps { get; private set; }
+        public DbSet<Gender> Genders { get; private set; }
+        public DbSet<Users> Userss { get; private set; }
+        public DbSet<Comments> Commentss { get; private set; }
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+        private readonly IConfiguration _configuration;
+
+        public ApplicationContext(IConfiguration configuration)
         {
             Database.EnsureCreated();
+            _configuration = configuration;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=TestAppDB;Trusted_Connection=True;MultipleActiveResultSets=True;");
+            string connectionString = _configuration.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseSqlServer(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

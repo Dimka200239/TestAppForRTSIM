@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace server.Model
 {
@@ -25,6 +26,12 @@ namespace server.Model
         [DisplayName("PasswordEmp")]
         [Required(ErrorMessage = "Требуется пароль сотрудника")]
         public string passwordEmp { get; set; }
+
+        [DisplayName("Abbreviation")]
+        public string abbreviation { get; set; }
+
+        [ForeignKey("abbreviation")]
+        public Gender? Gender { get; set; }
 
         public List<EmployeeOrganizationMap>? EmployeeOrganizationMaps { get; set; }
     }

@@ -10,12 +10,19 @@ namespace server.Controller
     [ApiController]
     public class EmployeeController : ControllerBase
     {
+        private readonly ApplicationContext _dbContext;
+
+        public EmployeeController(ApplicationContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         [HttpGet("getEmployeeByLogin/{loginEmp}")]
         public async Task<ActionResult<Model.Employee>> Get(string loginEmp)
         {
             Model.Employee result = null;
 
-            await using (ApplicationContext db = new ApplicationContext(new DbContextOptions<ApplicationContext>()))
+            await using (ApplicationContext db = _dbContext)
             {
                 try
                 {
@@ -37,7 +44,7 @@ namespace server.Controller
         {
             Model.Employee result = null;
 
-            await using (ApplicationContext db = new ApplicationContext(new DbContextOptions<ApplicationContext>()))
+            await using (ApplicationContext db = _dbContext)
             {
                 try
                 {
@@ -57,7 +64,7 @@ namespace server.Controller
         [HttpPost("addNewEmployee")]
         public async Task<ActionResult<bool>> Post(Employee employee)
         {
-            await using (ApplicationContext db = new ApplicationContext(new DbContextOptions<ApplicationContext>()))
+            await using (ApplicationContext db = _dbContext)
             {
                 try
                 {

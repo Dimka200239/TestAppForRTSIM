@@ -5,20 +5,30 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client", "client\client.csproj", "{80DE9D87-302D-4A7D-882D-D3E824096546}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "server", "server\server.csproj", "{7810B41D-D97A-45D2-882A-BCA68141519C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "server", "server\server.csproj", "{7810B41D-D97A-45D2-882A-BCA68141519C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Development|Any CPU = Development|Any CPU
+		Production|Any CPU = Production|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{80DE9D87-302D-4A7D-882D-D3E824096546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{80DE9D87-302D-4A7D-882D-D3E824096546}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80DE9D87-302D-4A7D-882D-D3E824096546}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{80DE9D87-302D-4A7D-882D-D3E824096546}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{80DE9D87-302D-4A7D-882D-D3E824096546}.Production|Any CPU.ActiveCfg = Release|Any CPU
+		{80DE9D87-302D-4A7D-882D-D3E824096546}.Production|Any CPU.Build.0 = Release|Any CPU
 		{80DE9D87-302D-4A7D-882D-D3E824096546}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80DE9D87-302D-4A7D-882D-D3E824096546}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7810B41D-D97A-45D2-882A-BCA68141519C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7810B41D-D97A-45D2-882A-BCA68141519C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7810B41D-D97A-45D2-882A-BCA68141519C}.Development|Any CPU.ActiveCfg = Production|Any CPU
+		{7810B41D-D97A-45D2-882A-BCA68141519C}.Development|Any CPU.Build.0 = Production|Any CPU
+		{7810B41D-D97A-45D2-882A-BCA68141519C}.Production|Any CPU.ActiveCfg = Development|Any CPU
+		{7810B41D-D97A-45D2-882A-BCA68141519C}.Production|Any CPU.Build.0 = Development|Any CPU
 		{7810B41D-D97A-45D2-882A-BCA68141519C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7810B41D-D97A-45D2-882A-BCA68141519C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

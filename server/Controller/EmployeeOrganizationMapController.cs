@@ -9,12 +9,19 @@ namespace server.Controller
     [ApiController]
     public class EmployeeOrganizationMapController : ControllerBase
     {
+        private readonly ApplicationContext _dbContext;
+
+        public EmployeeOrganizationMapController(ApplicationContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         [HttpGet("getAllEmployeeInOrganization/{nameOrg}")]
         public async Task<ActionResult<List<Model.Employee>>> Get(string nameOrg)
         {
             List<Model.Employee> result = null;
 
-            await using (ApplicationContext db = new ApplicationContext(new DbContextOptions<ApplicationContext>()))
+            await using (ApplicationContext db = _dbContext)
             {
                 try
                 {
@@ -38,7 +45,7 @@ namespace server.Controller
         {
             Model.Organization result = null;
 
-            await using (ApplicationContext db = new ApplicationContext(new DbContextOptions<ApplicationContext>()))
+            await using (ApplicationContext db = _dbContext)
             {
                 try
                 {
@@ -60,7 +67,7 @@ namespace server.Controller
         [HttpPost("addNewEmployeeOrganizationMap")]
         public async Task<ActionResult<bool>> Post(EmployeeOrganizationMap employeeOrganizationMap)
         {
-            await using (ApplicationContext db = new ApplicationContext(new DbContextOptions<ApplicationContext>()))
+            await using (ApplicationContext db = _dbContext)
             {
                 try
                 {
