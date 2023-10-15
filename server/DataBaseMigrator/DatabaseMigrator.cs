@@ -11,8 +11,15 @@ namespace server.DataBaseMigrator
         {
             using (var scope = serviceProvider.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
-                dbContext.Database.Migrate();
+                try
+                {
+                    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+                    dbContext.Database.Migrate();
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
     }

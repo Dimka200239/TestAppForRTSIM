@@ -15,17 +15,19 @@ namespace server.Model.Data
         public DbSet<Comments> Commentss { get; private set; }
 
         private readonly IConfiguration _configuration;
+        private readonly string _connectionString;
 
         public ApplicationContext(IConfiguration configuration)
         {
-            Database.EnsureCreated();
             _configuration = configuration;
+            _connectionString = _configuration.GetConnectionString("DefaultConnection");
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = _configuration.GetConnectionString("DefaultConnection");
-            optionsBuilder.UseSqlServer(connectionString);
+            
+            optionsBuilder.UseSqlServer(_connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

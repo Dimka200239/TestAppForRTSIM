@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+п»їusing Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using server.DataBaseMigrator;
 using server.Model.Data;
@@ -9,23 +9,17 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Загрузка конфигурации из файла appsettings.json
         builder.Configuration.AddJsonFile("appsettings.json");
-        // Определение текущей среды выполнения
         var environment = builder.Configuration.GetValue<string>("Environment");
-        // Загрузка конфигурации из файла appsettings.Development.json или appsettings.Production.json в зависимости от среды
         builder.Configuration.AddJsonFile($"appsettings.{environment}.json", optional: true);
 
-        // Добавление сервисов к контейнеру
         builder.Services.AddDbContext<ApplicationContext>(options =>
         {
-            // Получение строки подключения из конфигурации
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             options.UseSqlServer(connectionString);
         });
 
         // Add services to the container.
-
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
@@ -41,9 +35,9 @@ public class Program
         }
         else
         {
-            DatabaseMigrator.Migrate(app.Services);
             app.UseSwagger();
             app.UseSwaggerUI();
+            DatabaseMigrator.Migrate(app.Services);
         }
 
         app.UseHttpsRedirection();
